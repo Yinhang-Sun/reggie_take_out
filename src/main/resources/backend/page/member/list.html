@@ -127,7 +127,10 @@
         computed: {},
         created() {
             this.init()
-            this.user = JSON.parse(localStorage.getItem('userInfo')).username
+            if (localStorage.getItem('userInfo') != null) {
+                //Get the account of the currently logged-in employee and assign it to the model data user
+                this.user = JSON.parse(localStorage.getItem('userInfo')).username
+            }
         },
         mounted() {
         },

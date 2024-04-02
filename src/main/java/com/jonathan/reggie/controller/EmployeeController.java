@@ -86,14 +86,14 @@ public class EmployeeController {
         // Set the initial password to 123456, which requires md5 encryption.
         employee.setPassword(DigestUtils.md5DigestAsHex("123456".getBytes()));
 
-        employee.setCreateTime(LocalDateTime.now());
-        employee.setUpdateTime(LocalDateTime.now());
-
-        //Get the id of the currently logged-in user
-        Long empId = (Long) request.getSession().getAttribute("employee");
-
-        employee.setCreateUser(empId);
-        employee.setUpdateUser(empId);
+//        employee.setCreateTime(LocalDateTime.now());
+//        employee.setUpdateTime(LocalDateTime.now());
+//
+//        //Get the id of the currently logged-in user
+//        Long empId = (Long) request.getSession().getAttribute("employee");
+//
+//        employee.setCreateUser(empId);
+//        employee.setUpdateUser(empId);
 
         employeeService.save(employee);
 
@@ -129,4 +129,43 @@ public class EmployeeController {
 
         return R.success(pageInfo);
     }
+
+    /**
+     * Modify employee information based on ID
+     * @param employee
+     * @return
+     */
+
+    @PutMapping
+    public R<String> update(HttpServletRequest request, @RequestBody Employee employee) {
+        log.info(employee.toString());
+
+        long id = Thread.currentThread().getId();
+        log.info("Thread id is: {}", id);
+
+//        Long empId = (Long) request.getSession().getAttribute("employee");
+//        employee.setUpdateTime(LocalDateTime.now());
+//        employee.setUpdateUser(empId);
+        employeeService.updateById(employee);
+
+        return R.success("Employee info updated successfully!");
+
+    }
+
+    /**
+     * Query employee information based on ID
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}")
+    public R<Employee> getById(@PathVariable Long id) {
+        log.info("Query employee information based on ID...");
+        Employee employee = employeeService.getById(id);
+        if(employee != null){
+            return R.success(employee);
+        }
+        return R.error("No corresponding employee information found");
+    }
+
+
 }
