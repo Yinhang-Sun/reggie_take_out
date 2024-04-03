@@ -117,7 +117,7 @@ public class EmployeeController {
         //Construct pagination constructor
         Page pageInfo = new Page(page,pageSize);
 
-        //Construct conditional initializer
+        //Construct conditional constructor
         LambdaQueryWrapper<Employee> queryWrapper = new LambdaQueryWrapper();
         //Add filter criteria
         queryWrapper.like(StringUtils.isNotEmpty(name),Employee::getName,name);

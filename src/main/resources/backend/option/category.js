@@ -1,4 +1,4 @@
-// 查询列表接口
+// listing category interface
 const getCategoryPage = (params) => {
   return $axios({
     url: '/category/page',
@@ -7,7 +7,7 @@ const getCategoryPage = (params) => {
   })
 }
 
-// 编辑页面反查详情接口
+// querying category interface
 const queryCategoryById = (id) => {
   return $axios({
     url: `/category/${id}`,
@@ -15,7 +15,7 @@ const queryCategoryById = (id) => {
   })
 }
 
-// 删除当前列的接口
+// deleting interface
 const deleCategory = (id) => {
   return $axios({
     url: '/category',
@@ -24,7 +24,7 @@ const deleCategory = (id) => {
   })
 }
 
-// 修改接口
+// editing interface
 const editCategory = (params) => {
   return $axios({
     url: '/category',
@@ -33,7 +33,7 @@ const editCategory = (params) => {
   })
 }
 
-// 新增接口
+// adding interface
 const addCategory = (params) => {
   return $axios({
     url: '/category',

@@ -5,14 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="533646c1-0060-453e-b5ae-83667686908b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/controller/CategoryController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/entity/Category.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/mapper/CategoryMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/service/CategoryService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/service/impl/CategoryServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/backend/option/category.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/backend/option/list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/controller/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/controller/CategoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/controller/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/controller/EmployeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/entity/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/entity/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/mapper/CategoryMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/mapper/CategoryMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/service/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/service/CategoryService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/backend/api/category.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/backend/api/category.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/backend/js/validate.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/backend/js/validate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/backend/page/category/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/backend/page/category/list.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +73,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/yinhang_sun/Developer/reggie_take_out/src/main/java/com/jonathan/reggie/entity",
+    "last_opened_file_path": "/Users/yinhang_sun/Developer/reggie_take_out/src/main/resources/backend/api",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -92,11 +94,14 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/backend/api" />
+      <recent name="$PROJECT_DIR$/src/main/resources/backend/page/category" />
       <recent name="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/entity" />
       <recent name="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/common" />
       <recent name="$PROJECT_DIR$/src/main/resources/backend/page/login" />
-      <recent name="$PROJECT_DIR$/src/main/resources" />
-      <recent name="$PROJECT_DIR$/src/main/java/com/jonathan/reggie" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/backend/option" />
     </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="com.jonathan.reggie.service" />
@@ -138,7 +143,12 @@
       <workItem from="1711840477810" duration="52000" />
       <workItem from="1711840536223" duration="290000" />
       <workItem from="1711840993811" duration="151000" />
-      <workItem from="1711841150420" duration="38616000" />
+      <workItem from="1711841150420" duration="40084000" />
+      <workItem from="1712092679926" duration="53000" />
+      <workItem from="1712092756760" duration="32000" />
+      <workItem from="1712092811884" duration="22000" />
+      <workItem from="1712092854165" duration="28000" />
+      <workItem from="1712093067663" duration="10831000" />
     </task>
     <servers />
   </component>
