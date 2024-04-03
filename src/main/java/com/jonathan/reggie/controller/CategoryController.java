@@ -62,18 +62,31 @@ public class CategoryController {
     /**
      * delete category according to id
      *
-     * @param id
+     * @param ids
      * @return
      */
     @DeleteMapping
-    public R<String> delete(Long id) {
-        log.info("delete category, id is: {}", id);
+    public R<String> delete(Long ids) {
+        log.info("delete category, id is: {}", ids);
 
-        categoryService.removeById(id);
+        //categoryService.removeById(ids);
+        categoryService.remove(ids);
         return R.success("category deleted successfully!");
     }
 
+    /**
+     * Modify category information based on id
+     * @param category
+     * @return
+     */
+    @PutMapping
+    public R<String> update(@RequestBody Category category){
+        log.info("Modify category information：{}",category);
 
+        categoryService.updateById(category);
+
+        return R.success("Modification of category information successful!");
+    }
 
 
 }
