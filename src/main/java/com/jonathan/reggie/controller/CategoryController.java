@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 /**
  * Category management
@@ -86,6 +88,26 @@ public class CategoryController {
         categoryService.updateById(category);
 
         return R.success("Modification of category information successful!");
+    }
+
+    /**
+     * Query category data based on conditions
+     * @param category
+     * @return
+     */
+    @GetMapping("/list")
+    public R<List<Category>> list(Category category) {
+        //conditional constructor
+        LambdaQueryWrapper<Category> queryWrapper = new LambdaQueryWrapper<>();
+
+        //Add conditions
+        queryWrapper.eq(category.getType() != null, Category::getType, category.getType());
+
+        //Add sort conditions
+        queryWrapper.orderByAsc(Category::getSort).orderByDesc(Category::getUpdateTime);
+
+        List<Category> list = categoryService.list(queryWrapper);
+        return R.success(list);
     }
 
 
