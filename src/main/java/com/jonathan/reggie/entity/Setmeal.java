@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
- * 套餐
+ * Setmeal(Combo)
  */
 @Data
 public class Setmeal implements Serializable {
@@ -20,31 +20,31 @@ public class Setmeal implements Serializable {
     private Long id;
 
 
-    //分类id
+    //Category id
     private Long categoryId;
 
 
-    //套餐名称
+    //Setmeal name
     private String name;
 
 
-    //套餐价格
+    //Setmeal price
     private BigDecimal price;
 
 
-    //状态 0:停用 1:启用
+    //Status 0:Stop 1:Start
     private Integer status;
 
 
-    //编码
+    //Setmeal code
     private String code;
 
 
-    //描述信息
+    //Setmeal description
     private String description;
 
 
-    //图片
+    //Setmeal image
     private String image;
 
 
@@ -64,6 +64,6 @@ public class Setmeal implements Serializable {
     private Long updateUser;
 
 
-    //是否删除
+    //Deleted or not
     private Integer isDeleted;
 }
