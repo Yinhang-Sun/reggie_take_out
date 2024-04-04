@@ -101,5 +101,33 @@ public class DishController {
         return R.success(dishDtoPage);
     }
 
+    /**
+     * query dish and dish flavor info based on id
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}")
+    public R<DishDto> get(@PathVariable Long id) {
+        DishDto dishDto = dishService.getByIdWithFlavor(id);
+
+        return R.success(dishDto);
+    }
+
+    /**
+     * Edit dish
+     *
+     * @param dishDto
+     * @return
+     */
+    @PutMapping
+    public R<String> update(@RequestBody DishDto dishDto) {
+        log.info(dishDto.toString());
+
+        dishService.updateWithFlavor(dishDto);
+
+        return R.success("Added dish successfully!");
+    }
+
+
 
 }
