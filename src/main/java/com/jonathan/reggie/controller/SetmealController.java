@@ -6,6 +6,7 @@ import com.jonathan.reggie.common.R;
 import com.jonathan.reggie.dto.SetmealDto;
 import com.jonathan.reggie.entity.Category;
 import com.jonathan.reggie.entity.Setmeal;
+import com.jonathan.reggie.entity.SetmealDish;
 import com.jonathan.reggie.service.CategoryService;
 import com.jonathan.reggie.service.SetmealDishService;
 import com.jonathan.reggie.service.SetmealService;
@@ -139,6 +140,41 @@ public class SetmealController {
         }
 
         return R.success("Successfully modified！");
+    }
+
+    @GetMapping("/{id}")
+    public R<SetmealDto> getById(@PathVariable Long id){
+
+        // We need to return setmealDto and define a new setmealDto to save data
+        SetmealDto setmealDto = new SetmealDto();
+
+        // Pass normal data in
+
+        Setmeal setmeal = setmealService.getById(id);
+
+        BeanUtils.copyProperties(setmeal,setmealDto);
+
+        // Pass the dish information in
+
+        LambdaQueryWrapper<SetmealDish> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(SetmealDish::getSetmealId,id);
+
+        List<SetmealDish> list = setmealDishService.list(queryWrapper);
+
+        setmealDto.setSetmealDishes(list);
+
+        // return setmealDto
+        return R.success(setmealDto);
+    }
+
+
+    @PutMapping
+    public R<String> update(@RequestBody SetmealDto setmealDto){
+
+        setmealService.updateById(setmealDto);
+
+        return R.success("Modified Successfully!");
+
     }
 
 }

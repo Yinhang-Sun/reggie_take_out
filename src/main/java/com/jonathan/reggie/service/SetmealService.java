@@ -19,4 +19,10 @@ public interface SetmealService extends IService<Setmeal> {
      * @param ids
      */
     public void removeWithDish(List<Long> ids);
+
+    /**
+     * Edit combo/setmeal and at the same time dishes associated
+     * @param setmealDto
+     */
+    public void updateWithDish(SetmealDto setmealDto);
 }
