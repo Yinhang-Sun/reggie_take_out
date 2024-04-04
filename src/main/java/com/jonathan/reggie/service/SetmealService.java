@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.jonathan.reggie.dto.SetmealDto;
 import com.jonathan.reggie.entity.Setmeal;
 
+import java.util.List;
+
 public interface SetmealService extends IService<Setmeal> {
 
     /**
@@ -11,4 +13,10 @@ public interface SetmealService extends IService<Setmeal> {
      * @param setmealDto
      */
     public void saveWithDish(SetmealDto setmealDto);
+
+    /**
+     * Delete combo/setmeal and at the same time dishes associated
+     * @param ids
+     */
+    public void removeWithDish(List<Long> ids);
 }

@@ -1,6 +1,8 @@
 package com.jonathan.reggie.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.jonathan.reggie.common.CustomException;
 import com.jonathan.reggie.dto.SetmealDto;
 import com.jonathan.reggie.entity.Setmeal;
 import com.jonathan.reggie.entity.SetmealDish;
@@ -24,6 +26,7 @@ public class SetmealServiceImpl extends ServiceImpl<SetmealMapper, Setmeal> impl
 
     /**
      * When adding a new set meal, you need to save the relationship between the set meal and the dishes.
+     *
      * @param setmealDto
      */
     @Transactional
@@ -40,6 +43,36 @@ public class SetmealServiceImpl extends ServiceImpl<SetmealMapper, Setmeal> impl
         //Save the set meal and dishes, operate setmeal_dish table,
         //and perform insert operation
         setmealDishService.saveBatch(setmealDishes);
+    }
+
+
+    /**
+     * Delete combo/setmeal and at the same time dishes associated
+     *
+     * @param ids
+     */
+    public void removeWithDish(List<Long> ids) {
+        //select count(*) from setmeal where id in (1, 2, 3) and status = 1;
+        // check the combo status, and determine if the combo can be deleted or not
+        LambdaQueryWrapper<Setmeal> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.in(Setmeal::getId, ids);
+        queryWrapper.eq(Setmeal::getStatus, 1);
+
+        int count = this.count(queryWrapper);
+        if (count > 0) {
+            // if it can not be deleted, throw an exception
+            throw new CustomException("The combo is on sale, and can not be deleted!");
+        }
+
+        // if it can be deleted, delete the data in the combo first
+        this.removeByIds(ids);
+
+
+        // delete from setmeal_dish where setmeal_id in (1, 2, 3)
+        LambdaQueryWrapper<SetmealDish> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.in(SetmealDish::getSetmealId, ids);
+        // and delete the data in dishes associated
+        setmealDishService.remove(lambdaQueryWrapper);
     }
 
 
