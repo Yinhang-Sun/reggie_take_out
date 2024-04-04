@@ -125,7 +125,29 @@ public class DishController {
 
         dishService.updateWithFlavor(dishDto);
 
-        return R.success("Added dish successfully!");
+        return R.success("Updated dish successfully!");
+    }
+
+    /**
+     * query dish data based on conditions
+     * @param dish
+     * @return
+     */
+    @GetMapping("/list")
+    public R<List<Dish>> list(Dish dish) {
+
+        // construct query conditions
+        LambdaQueryWrapper<Dish> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(dish.getCategoryId() != null, Dish::getCategoryId, dish.getCategoryId());
+        // add condition with status = 1, meaning on sale
+        queryWrapper.eq(Dish::getStatus, 1);
+
+        // add sort condition
+        queryWrapper.orderByAsc(Dish::getSort).orderByDesc(Dish::getUpdateTime);
+
+        List<Dish> list = dishService.list(queryWrapper);
+
+        return R.success(list);
     }
 
 
