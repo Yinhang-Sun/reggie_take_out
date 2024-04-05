@@ -7,6 +7,7 @@ import com.jonathan.reggie.common.R;
 import com.jonathan.reggie.dto.DishDto;
 import com.jonathan.reggie.entity.Category;
 import com.jonathan.reggie.entity.Dish;
+import com.jonathan.reggie.entity.DishFlavor;
 import com.jonathan.reggie.service.CategoryService;
 import com.jonathan.reggie.service.DishFlavorService;
 import com.jonathan.reggie.service.DishService;
@@ -133,23 +134,60 @@ public class DishController {
      * @param dish
      * @return
      */
+//    @GetMapping("/list")
+//    public R<List<Dish>> list(Dish dish) {
+//
+//        // construct query conditions
+//        LambdaQueryWrapper<Dish> queryWrapper = new LambdaQueryWrapper<>();
+//        queryWrapper.eq(dish.getCategoryId() != null, Dish::getCategoryId, dish.getCategoryId());
+//        // add condition with status = 1, meaning on sale
+//        queryWrapper.eq(Dish::getStatus, 1);
+//
+//        // add sort condition
+//        queryWrapper.orderByAsc(Dish::getSort).orderByDesc(Dish::getUpdateTime);
+//
+//        List<Dish> list = dishService.list(queryWrapper);
+//
+//        return R.success(list);
+//    }
+
     @GetMapping("/list")
-    public R<List<Dish>> list(Dish dish) {
-
-        // construct query conditions
+    public R<List<DishDto>> list(Dish dish){
+        //Construct query condition
         LambdaQueryWrapper<Dish> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(dish.getCategoryId() != null, Dish::getCategoryId, dish.getCategoryId());
-        // add condition with status = 1, meaning on sale
-        queryWrapper.eq(Dish::getStatus, 1);
+        queryWrapper.eq(dish.getCategoryId() != null ,Dish::getCategoryId,dish.getCategoryId());
+        //Add conditions to query dishes with status 1 (on sale status)
+        queryWrapper.eq(Dish::getStatus,1);
 
-        // add sort condition
+        //Add sorting criteria
         queryWrapper.orderByAsc(Dish::getSort).orderByDesc(Dish::getUpdateTime);
 
         List<Dish> list = dishService.list(queryWrapper);
 
-        return R.success(list);
+        List<DishDto> dishDtoList = list.stream().map((item) -> {
+            DishDto dishDto = new DishDto();
+
+            BeanUtils.copyProperties(item,dishDto);
+
+            Long categoryId = item.getCategoryId();//category id
+            //query category object based on id
+            Category category = categoryService.getById(categoryId);
+
+            if(category != null){
+                String categoryName = category.getName();
+                dishDto.setCategoryName(categoryName);
+            }
+
+            //current dish id
+            Long dishId = item.getId();
+            LambdaQueryWrapper<DishFlavor> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+            lambdaQueryWrapper.eq(DishFlavor::getDishId,dishId);
+            //SQL:select * from dish_flavor where dish_id = ?
+            List<DishFlavor> dishFlavorList = dishFlavorService.list(lambdaQueryWrapper);
+            dishDto.setFlavors(dishFlavorList);
+            return dishDto;
+        }).collect(Collectors.toList());
+
+        return R.success(dishDtoList);
     }
-
-
-
 }
