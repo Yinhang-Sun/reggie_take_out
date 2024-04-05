@@ -38,7 +38,9 @@ public class LoginCheckFilter implements Filter {
                 "/employee/logout",
                 "/backend/**",
                 "/front/**",
-                "/common/**"
+                "/common/**",
+                "/user/login",
+                "/user/sendMsg"
         };
 
 
@@ -52,7 +54,7 @@ public class LoginCheckFilter implements Filter {
             return;
         }
 
-        //4. Determine the login status. If logged in, directly release
+        //4-1. Determine the login status. If logged in, directly release
         if (request.getSession().getAttribute("employee") != null) {
             log.info("The user is logged in and the user ID is: {}", request.getSession().getAttribute("employee"));
 
@@ -65,6 +67,21 @@ public class LoginCheckFilter implements Filter {
             filterChain.doFilter(request, response);
             return;
         }
+
+        //4-2. Determine the login status. If logged in, directly release
+        if (request.getSession().getAttribute("user") != null) {
+            log.info("The user is logged in and the user ID is: {}", request.getSession().getAttribute("user"));
+
+            Long userId = (Long) request.getSession().getAttribute("user");
+            BaseContext.setCurrentId(userId);
+
+            long id = Thread.currentThread().getId();
+            log.info("Thread id is: {}", id);
+
+            filterChain.doFilter(request, response);
+            return;
+        }
+
 
         log.info("User is not logged in");
         //5. If you are not logged in, return the result of not logged in, and
