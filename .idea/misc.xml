@@ -5,7 +5,19 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/../idea_workspace/jonathan_web_project/springboot-web-quickstart/pom.xml" />
+        <option value="$PROJECT_DIR$/../idea_workspace/http-server-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/../idea_workspace/jedis_demo/pom.xml" />
+        <option value="$PROJECT_DIR$/../idea_workspace/springdataredis_demo/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/../idea_workspace/http-server-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/../idea_workspace/jedis_demo/pom.xml" />
+        <option value="$PROJECT_DIR$/../idea_workspace/jonathan_web_project/springboot-web-quickstart/pom.xml" />
+        <option value="$PROJECT_DIR$/../idea_workspace/springdataredis_demo/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_21" project-jdk-name="21" project-jdk-type="JavaSDK">

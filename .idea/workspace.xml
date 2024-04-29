@@ -5,9 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="533646c1-0060-453e-b5ae-83667686908b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../idea_workspace/jonathan_web_project/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../idea_workspace/jonathan_web_project/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../idea_workspace/jonathan_web_project/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../idea_workspace/jonathan_web_project/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../idea_workspace/jonathan_web_project/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../idea_workspace/jonathan_web_project/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../idea_workspace/jonathan_web_project/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../idea_workspace/jonathan_web_project/jonathan_web_project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/controller/DishController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/controller/DishController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +77,14 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Server.executor": "Run",
+    "JUnit.JedisTest.testRedis.executor": "Run",
+    "JUnit.SpringDataRedisTest.testCommon.executor": "Debug",
+    "JUnit.SpringDataRedisTest.testHash.executor": "Run",
+    "JUnit.SpringDataRedisTest.testList.executor": "Debug",
+    "JUnit.SpringDataRedisTest.testSet.executor": "Debug",
+    "JUnit.SpringDataRedisTest.testString.executor": "Run",
+    "JUnit.SpringDataRedisTest.testZSet.executor": "Debug",
     "Maven.reggie_take_out [clean].executor": "Run",
     "Maven.reggie_take_out [compile].executor": "Run",
     "Maven.reggie_take_out [install].executor": "Run",
@@ -80,15 +98,17 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.ReggieApplication.executor": "Run",
+    "Spring Boot.SpringbootWebQuickstartApplication.executor": "Run",
     "WebServerToolWindowFactoryState": "false",
+    "jdk.selected.JAVA_MODULE": "21",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/yinhang_sun/Developer/reggie_take_out",
+    "last_opened_file_path": "/Users/yinhang_sun/Developer/reggie_take_out/pom.xml",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
+    "project.structure.last.edited": "SDKs",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "MavenSettings",
@@ -101,13 +121,16 @@
     ]
   }
 }]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/../idea_workspace/jonathan_web_project/springboot-web-quickstart/src/main/resources/static" />
       <recent name="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/service" />
       <recent name="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/mapper" />
       <recent name="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/service/impl" />
       <recent name="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/entity" />
-      <recent name="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/controller" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/backend/page/category" />
@@ -119,8 +142,8 @@
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.ReggieApplication">
-    <configuration name="UploadFileTest.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="reggie_take_out" />
+    <configuration name="SpringDataRedisTest.testCommon" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="springdataredis_demo" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.jonathan.test.*" />
@@ -128,9 +151,71 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.jonathan.test" />
-      <option name="MAIN_CLASS_NAME" value="com.jonathan.test.UploadFileTest" />
-      <option name="METHOD_NAME" value="test1" />
+      <option name="MAIN_CLASS_NAME" value="com.jonathan.test.SpringDataRedisTest" />
+      <option name="METHOD_NAME" value="testCommon" />
       <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpringDataRedisTest.testList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="springdataredis_demo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.jonathan.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.jonathan.test" />
+      <option name="MAIN_CLASS_NAME" value="com.jonathan.test.SpringDataRedisTest" />
+      <option name="METHOD_NAME" value="testList" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpringDataRedisTest.testSet" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="springdataredis_demo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.jonathan.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.jonathan.test" />
+      <option name="MAIN_CLASS_NAME" value="com.jonathan.test.SpringDataRedisTest" />
+      <option name="METHOD_NAME" value="testSet" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpringDataRedisTest.testZSet" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="springdataredis_demo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.jonathan.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.jonathan.test" />
+      <option name="MAIN_CLASS_NAME" value="com.jonathan.test.SpringDataRedisTest" />
+      <option name="METHOD_NAME" value="testZSet" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="App" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="springdataredis_demo" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.jonathan.App" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JedisDemoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="jedis_demo" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.jonathan.JedisDemoApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -148,10 +233,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SpringbootWebQuickstartApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="springboot-web-quickstart" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.jonathan.SpringbootWebQuickstartApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.ReggieApplication" />
-        <item itemvalue="JUnit.UploadFileTest.test1" />
+        <item itemvalue="JUnit.SpringDataRedisTest.testCommon" />
+        <item itemvalue="JUnit.SpringDataRedisTest.testZSet" />
+        <item itemvalue="JUnit.SpringDataRedisTest.testSet" />
+        <item itemvalue="JUnit.SpringDataRedisTest.testList" />
       </list>
     </recent_temporary>
   </component>
@@ -188,7 +283,11 @@
       <workItem from="1712528607034" duration="79000" />
       <workItem from="1712962117212" duration="78000" />
       <workItem from="1712962209418" duration="37000" />
-      <workItem from="1712962340286" duration="2750000" />
+      <workItem from="1712962340286" duration="11255000" />
+      <workItem from="1713416015933" duration="436000" />
+      <workItem from="1713417479456" duration="887000" />
+      <workItem from="1713484032616" duration="97000" />
+      <workItem from="1714273908806" duration="15844000" />
     </task>
     <servers />
   </component>
@@ -218,6 +317,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/jonathan/reggie/service/impl/OrderServiceImpl.java</url>
           <line>44</line>
           <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../idea_workspace/springdataredis_demo/src/test/java/com/jonathan/test/SpringDataRedisTest.java</url>
+          <line>156</line>
+          <option name="timeStamp" value="55" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

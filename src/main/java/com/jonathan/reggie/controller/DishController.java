@@ -190,4 +190,35 @@ public class DishController {
 
         return R.success(dishDtoList);
     }
+
+    /**
+     * Start selling, start selling in batches
+     * @param ids
+     * @return
+     */
+    @PostMapping("/status/1")
+    public R<String> openStatus(Long[] ids) {
+        for (Long id : ids) {
+            Dish dish = dishService.getById(id);
+            dish.setStatus(1);
+            dishService.updateById(dish);
+        }
+
+        return R.success("Opened");
+    }
+
+    /**
+     * Stop selling, stop selling in batches
+     * @param ids
+     * @return
+     */
+    @PostMapping("/status/0")
+    public R<String> closeStatus(Long[] ids) {
+        for (Long id : ids) {
+            Dish dish = dishService.getById(id);
+            dish.setStatus(0);
+            dishService.updateById(dish);
+        }
+        return R.success("Closed");
+    }
 }
