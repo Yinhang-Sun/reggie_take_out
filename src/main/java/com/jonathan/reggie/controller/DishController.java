@@ -221,4 +221,17 @@ public class DishController {
         }
         return R.success("Closed");
     }
+
+    /**
+     * Delete by id in batches
+     * @param ids
+     * @return
+     */
+    @DeleteMapping
+    public R<String> deleteById(Long[] ids) {
+        for (Long id : ids) {
+            dishService.removeById(id);
+        }
+        return R.success("Deleted Dish successfully!");
+    }
 }

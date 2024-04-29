@@ -13,9 +13,6 @@
       <change afterPath="$PROJECT_DIR$/../idea_workspace/jonathan_web_project/.idea/modules.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../idea_workspace/jonathan_web_project/.idea/vcs.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../idea_workspace/jonathan_web_project/jonathan_web_project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/controller/DishController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/controller/DishController.java" afterDir="false" />
     </list>
@@ -287,7 +284,7 @@
       <workItem from="1713416015933" duration="436000" />
       <workItem from="1713417479456" duration="887000" />
       <workItem from="1713484032616" duration="97000" />
-      <workItem from="1714273908806" duration="15844000" />
+      <workItem from="1714273908806" duration="17826000" />
     </task>
     <servers />
   </component>
