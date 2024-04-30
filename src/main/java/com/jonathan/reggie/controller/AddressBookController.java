@@ -26,7 +26,7 @@ public class AddressBookController {
     private AddressBookService addressBookService;
 
     /**
-     * 新增
+     * Add
      */
     @PostMapping
     public R<AddressBook> save(@RequestBody AddressBook addressBook) {
@@ -101,5 +101,32 @@ public class AddressBookController {
 
         //SQL:select * from address_book where user_id = ? order by update_time desc
         return R.success(addressBookService.list(queryWrapper));
+    }
+
+    /**
+     * Additional features: modify address content
+     */
+    @PutMapping
+    public R<String> update(@RequestBody AddressBook addressBook) {
+
+        LambdaQueryWrapper<AddressBook> queryWrapper = new LambdaQueryWrapper();
+        queryWrapper.eq(AddressBook::getId,addressBook.getId());
+        addressBookService.update(addressBook,queryWrapper);
+
+        return R.success("Successfully modified");
+    }
+
+    /**
+     * Additional features: delete address content
+     * @param ids
+     * @return
+     */
+    @DeleteMapping
+    public R<String> remove(Long ids){
+
+        addressBookService.removeById(ids);
+
+        return R.success("Successfully modified");
+
     }
 }
