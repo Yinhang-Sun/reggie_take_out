@@ -3,11 +3,14 @@ package com.jonathan.reggie.controller;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.jonathan.reggie.common.R;
+import com.jonathan.reggie.dto.DishDto;
 import com.jonathan.reggie.dto.SetmealDto;
 import com.jonathan.reggie.entity.Category;
+import com.jonathan.reggie.entity.Dish;
 import com.jonathan.reggie.entity.Setmeal;
 import com.jonathan.reggie.entity.SetmealDish;
 import com.jonathan.reggie.service.CategoryService;
+import com.jonathan.reggie.service.DishService;
 import com.jonathan.reggie.service.SetmealDishService;
 import com.jonathan.reggie.service.SetmealService;
 import lombok.extern.slf4j.Slf4j;
@@ -34,6 +37,9 @@ public class SetmealController {
 
     @Autowired
     private SetmealDishService setmealDishService;
+
+    @Autowired
+    private DishService dishService;
 
     /**
      * Add setmeal/combo
@@ -192,6 +198,39 @@ public class SetmealController {
         List<Setmeal> list = setmealService.list(queryWrapper);
 
         return R.success(list);
+    }
+
+    /**
+     * Click on the setmeal picture to view the specific contents of the setmeal
+     * The main information to be displayed on the front end is:
+     * basic information of the dishes in the set meal, pictures, dish descriptions, and the number of dishes
+     * @param SetmealId
+     * @return
+     */
+    @GetMapping("/dish/{id}")
+    public R<List<DishDto>> dish(@PathVariable("id") Long SetmealId) {
+
+        LambdaQueryWrapper<SetmealDish> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(SetmealDish::getSetmealId, SetmealId);
+
+        // get data
+        List<SetmealDish> list = setmealDishService.list(queryWrapper);
+
+        List<DishDto> dishDtos = list.stream().map((setmealDish) -> {
+            DishDto dishDto = new DishDto();
+
+            // Copy of basic information
+            BeanUtils.copyProperties(setmealDish, dishDto);
+
+            // Set additional information
+            Long dishId = setmealDish.getDishId();
+            Dish dish = dishService.getById(dishId);
+            BeanUtils.copyProperties(dish, dishDto);
+
+            return dishDto;
+        }).collect(Collectors.toList());
+
+        return R.success(dishDtos);
     }
 
 }
