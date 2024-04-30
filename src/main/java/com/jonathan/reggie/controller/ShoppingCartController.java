@@ -104,4 +104,45 @@ public class ShoppingCartController {
         return R.success("Cleared the shopping cart successfully!");
 
     }
+
+    /**
+     * ShoppingCart sub
+     * @param shoppingCart
+     * @return
+     */
+    @PostMapping("/sub")
+    public R<ShoppingCart> sub(@RequestBody ShoppingCart shoppingCart){
+        // Set user
+        Long currentId = BaseContext.getCurrentId();
+        shoppingCart.setUserId(currentId);
+
+        // Basic query condition
+        LambdaQueryWrapper<ShoppingCart> queryWrapper = new LambdaQueryWrapper();
+        queryWrapper.eq(ShoppingCart::getUserId,currentId);
+
+        Long dishId = shoppingCart.getDishId();
+
+        // Check it is dish or setmeal
+
+        if(dishId != null){
+            // Shopping cart is dish
+            queryWrapper.eq(ShoppingCart::getDishId,shoppingCart.getDishId());
+        }else {
+            // Shopping cart is setmeal
+            queryWrapper.eq(ShoppingCart::getSetmealId,shoppingCart.getSetmealId());
+        }
+
+        // Check the number. If it is a positive number, subtract one; if it is 0, throw an exception.
+        ShoppingCart shoppingCartServiceOne = shoppingCartService.getOne(queryWrapper);
+        Integer number = shoppingCartServiceOne.getNumber();
+
+        if (number != 0){
+            shoppingCartServiceOne.setNumber(number - 1);
+            shoppingCartService.updateById(shoppingCartServiceOne);
+        }else {
+            shoppingCartService.removeById(shoppingCartServiceOne);
+        }
+
+        return R.success(shoppingCartServiceOne);
+    }
 }
