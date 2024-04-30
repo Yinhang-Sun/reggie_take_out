@@ -13,8 +13,12 @@
       <change afterPath="$PROJECT_DIR$/../idea_workspace/jonathan_web_project/.idea/modules.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../idea_workspace/jonathan_web_project/.idea/vcs.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../idea_workspace/jonathan_web_project/jonathan_web_project.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/dto/OrdersDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/controller/DishController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/controller/DishController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/controller/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/backend/api/combo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/backend/api/combo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/backend/api/order.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/backend/api/order.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/backend/page/order/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/backend/page/order/list.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -284,7 +288,7 @@
       <workItem from="1713416015933" duration="436000" />
       <workItem from="1713417479456" duration="887000" />
       <workItem from="1713484032616" duration="97000" />
-      <workItem from="1714273908806" duration="17826000" />
+      <workItem from="1714273908806" duration="24403000" />
     </task>
     <servers />
   </component>

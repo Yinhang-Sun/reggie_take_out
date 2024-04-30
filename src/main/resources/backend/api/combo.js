@@ -1,4 +1,4 @@
-// 查询列表数据
+// Query list data
 const getSetmealPage = (params) => {
   return $axios({
     url: '/setmeal/page',
@@ -7,7 +7,7 @@ const getSetmealPage = (params) => {
   })
 }
 
-// 删除数据接口
+// Delete data interface
 const deleteSetmeal = (ids) => {
   return $axios({
     url: '/setmeal',
@@ -16,7 +16,7 @@ const deleteSetmeal = (ids) => {
   })
 }
 
-// 修改数据接口
+// Modify data interface
 const editSetmeal = (params) => {
   return $axios({
     url: '/setmeal',
@@ -25,7 +25,7 @@ const editSetmeal = (params) => {
   })
 }
 
-// 新增数据接口
+// Add data interface
 const addSetmeal = (params) => {
   return $axios({
     url: '/setmeal',
@@ -34,7 +34,7 @@ const addSetmeal = (params) => {
   })
 }
 
-// 查询详情接口
+// Query details interface
 const querySetmealById = (id) => {
   return $axios({
     url: `/setmeal/${id}`,
@@ -42,7 +42,7 @@ const querySetmealById = (id) => {
   })
 }
 
-// 批量起售禁售
+// Start/Stop selling in batches
 const setmealStatusByStatus = (params) => {
   return $axios({
     url: `/setmeal/status/${params.status}`,
