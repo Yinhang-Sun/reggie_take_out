@@ -13,8 +13,7 @@
       <change afterPath="$PROJECT_DIR$/../idea_workspace/jonathan_web_project/.idea/modules.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../idea_workspace/jonathan_web_project/.idea/vcs.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../idea_workspace/jonathan_web_project/jonathan_web_project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/controller/AddressBookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/controller/AddressBookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jonathan/reggie/controller/UserController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -287,7 +286,7 @@
       <workItem from="1713416015933" duration="436000" />
       <workItem from="1713417479456" duration="887000" />
       <workItem from="1713484032616" duration="97000" />
-      <workItem from="1714273908806" duration="30450000" />
+      <workItem from="1714273908806" duration="30697000" />
     </task>
     <servers />
   </component>

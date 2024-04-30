@@ -94,4 +94,13 @@ public class UserController {
         return R.error("Login failed!");
     }
 
+    @PostMapping("/loginout")
+    public R<String> loginOut(HttpSession session){
+
+        // remove the session and it will be done
+        session.removeAttribute("user");
+
+        return R.success("login out successfully");
+    }
+
 }
