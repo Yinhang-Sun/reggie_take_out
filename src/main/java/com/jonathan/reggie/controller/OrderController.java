@@ -7,17 +7,21 @@ import com.jonathan.reggie.common.R;
 import com.jonathan.reggie.dto.OrdersDto;
 import com.jonathan.reggie.entity.OrderDetail;
 import com.jonathan.reggie.entity.Orders;
+import com.jonathan.reggie.entity.ShoppingCart;
 import com.jonathan.reggie.entity.User;
 import com.jonathan.reggie.service.OrderDetailService;
 import com.jonathan.reggie.service.OrderService;
+import com.jonathan.reggie.service.ShoppingCartService;
 import com.jonathan.reggie.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 
@@ -34,6 +38,9 @@ public class OrderController {
 
     @Autowired
     private OrderDetailService orderDetailService;
+
+    @Autowired
+    private ShoppingCartService shoppingCartService;
 
 
     /**
@@ -119,7 +126,7 @@ public class OrderController {
     }
 
     /**
-     * 查看手机版历史纪录
+     * View mobile version history
      * @param page
      * @param pageSize
      * @return
@@ -127,35 +134,35 @@ public class OrderController {
     @GetMapping("/userPage")
     public R<Page> pagePhone(int page,int pageSize){
 
-        // 新创返回类型Page
+        // new a return type page
         Page<Orders> pageInfo = new Page<>(page,pageSize);
         Page<OrdersDto> ordersDtoPage = new Page<>();
 
-        // 用户ID
+        // user id
         Long currentId = BaseContext.getCurrentId();
 
-        // 原条件写入
+        // original conditions
         LambdaQueryWrapper<Orders> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(Orders::getUserId,currentId);
         queryWrapper.orderByDesc(Orders::getOrderTime);
 
         orderService.page(pageInfo,queryWrapper);
 
-        // 普通赋值
+        // ordinary assignment
         BeanUtils.copyProperties(pageInfo,ordersDtoPage,"records");
 
-        // 订单赋值
+        // order assignment
         List<Orders> records = pageInfo.getRecords();
 
         List<OrdersDto> ordersDtoList = records.stream().map((item) -> {
 
-            // 新创内部元素
+            // new internal element
             OrdersDto ordersDto = new OrdersDto();
 
-            // 普通值赋值
+            // ordinary assignment
             BeanUtils.copyProperties(item,ordersDto);
 
-            // 菜单详情赋值
+            // dish details assignment
             Long itemId = item.getId();
 
             LambdaQueryWrapper<OrderDetail> orderDetailLambdaQueryWrapper = new LambdaQueryWrapper<>();
@@ -172,9 +179,67 @@ public class OrderController {
             return ordersDto;
         }).collect(Collectors.toList());
 
-        // 完成dishDtoPage的results的内容封装
+        // Complete the content encapsulation of dishDtoPage’s results
         ordersDtoPage.setRecords(ordersDtoList);
 
         return R.success(ordersDtoPage);
+    }
+
+    //
+    /**
+     * We need to re-add the dishes in the order to the shopping cart,
+     * so before that we need to clear the shopping cart (business layer implementation method)
+     */
+    @PostMapping("/again")
+    public R<String> againSubmit(@RequestBody Map<String,String> map){
+        // get id
+        String ids = map.get("id");
+
+        long id = Long.parseLong(ids);
+
+        // create checking condition
+        LambdaQueryWrapper<OrderDetail> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(OrderDetail::getOrderId,id);
+
+        //Get all order details corresponding to the order
+        List<OrderDetail> orderDetailList = orderDetailService.list(queryWrapper);
+
+        //clean the original shopping cart based on the user ID
+        shoppingCartService.clean();
+
+        //get user id
+        Long userId = BaseContext.getCurrentId();
+
+        //  assignment
+        List<ShoppingCart> shoppingCartList = orderDetailList.stream().map((item) -> {
+
+            // The following are all assignment operations
+
+            ShoppingCart shoppingCart = new ShoppingCart();
+            shoppingCart.setUserId(userId);
+            shoppingCart.setImage(item.getImage());
+
+            Long dishId = item.getDishId();
+            Long setmealId = item.getSetmealId();
+
+            if (dishId != null) {
+                // If it is a dish, add the query conditions of the dish
+                shoppingCart.setDishId(dishId);
+            } else {
+                // Added to cart is setmeal
+                shoppingCart.setSetmealId(setmealId);
+            }
+            shoppingCart.setName(item.getName());
+            shoppingCart.setDishFlavor(item.getDishFlavor());
+            shoppingCart.setNumber(item.getNumber());
+            shoppingCart.setAmount(item.getAmount());
+            shoppingCart.setCreateTime(LocalDateTime.now());
+            return shoppingCart;
+        }).collect(Collectors.toList());
+
+        // Insert shopping carts with data into the shopping cart table in batches
+        shoppingCartService.saveBatch(shoppingCartList);
+
+        return R.success("Operated successfully");
     }
 }
