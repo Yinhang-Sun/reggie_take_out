@@ -2,10 +2,13 @@ package com.jonathan.reggie.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.jonathan.reggie.common.BaseContext;
 import com.jonathan.reggie.common.R;
 import com.jonathan.reggie.dto.OrdersDto;
+import com.jonathan.reggie.entity.OrderDetail;
 import com.jonathan.reggie.entity.Orders;
 import com.jonathan.reggie.entity.User;
+import com.jonathan.reggie.service.OrderDetailService;
 import com.jonathan.reggie.service.OrderService;
 import com.jonathan.reggie.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +31,9 @@ public class OrderController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private OrderDetailService orderDetailService;
 
 
     /**
@@ -110,5 +116,65 @@ public class OrderController {
         orderService.updateById(orders);
 
         return R.success("Modified Successfully");
+    }
+
+    /**
+     * 查看手机版历史纪录
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    @GetMapping("/userPage")
+    public R<Page> pagePhone(int page,int pageSize){
+
+        // 新创返回类型Page
+        Page<Orders> pageInfo = new Page<>(page,pageSize);
+        Page<OrdersDto> ordersDtoPage = new Page<>();
+
+        // 用户ID
+        Long currentId = BaseContext.getCurrentId();
+
+        // 原条件写入
+        LambdaQueryWrapper<Orders> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(Orders::getUserId,currentId);
+        queryWrapper.orderByDesc(Orders::getOrderTime);
+
+        orderService.page(pageInfo,queryWrapper);
+
+        // 普通赋值
+        BeanUtils.copyProperties(pageInfo,ordersDtoPage,"records");
+
+        // 订单赋值
+        List<Orders> records = pageInfo.getRecords();
+
+        List<OrdersDto> ordersDtoList = records.stream().map((item) -> {
+
+            // 新创内部元素
+            OrdersDto ordersDto = new OrdersDto();
+
+            // 普通值赋值
+            BeanUtils.copyProperties(item,ordersDto);
+
+            // 菜单详情赋值
+            Long itemId = item.getId();
+
+            LambdaQueryWrapper<OrderDetail> orderDetailLambdaQueryWrapper = new LambdaQueryWrapper<>();
+            orderDetailLambdaQueryWrapper.eq(OrderDetail::getOrderId,itemId);
+
+            int count = orderDetailService.count(orderDetailLambdaQueryWrapper);
+
+            List<OrderDetail> orderDetailList = orderDetailService.list(orderDetailLambdaQueryWrapper);
+
+            ordersDto.setSumNum(count);
+
+            ordersDto.setOrderDetails(orderDetailList);
+
+            return ordersDto;
+        }).collect(Collectors.toList());
+
+        // 完成dishDtoPage的results的内容封装
+        ordersDtoPage.setRecords(ordersDtoList);
+
+        return R.success(ordersDtoPage);
     }
 }
