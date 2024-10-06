@@ -26,7 +26,7 @@ public class UserController {
     public UserService userService;
 
     /**
-     * send phone SMS verification code
+     * send phone SMS verification code test
      * @param user
      * @return
      */
