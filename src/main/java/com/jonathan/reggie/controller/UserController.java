@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.jonathan.reggie.common.R;
 import com.jonathan.reggie.entity.User;
 import com.jonathan.reggie.service.UserService;
+import com.jonathan.reggie.utils.SMSUtils;
 import com.jonathan.reggie.utils.ValidateCodeUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
@@ -26,7 +27,7 @@ public class UserController {
     public UserService userService;
 
     /**
-     * send phone SMS verification code
+     * Send phone SMS verification code
      * @param user
      * @return
      */
@@ -41,7 +42,7 @@ public class UserController {
             log.info("code={}",code);
 
             //Call the SMS service API provided by Alibaba Cloud to complete sending SMS
-            //SMSUtils.sendMessage("Reggie Take Out","",phone,code);
+            SMSUtils.sendMessage("Reggie Take Out","",phone,code);
 
             //The generated verification code needs to be saved to Session
             session.setAttribute(phone,code);
@@ -65,7 +66,7 @@ public class UserController {
         //Get mobile phone number
         String phone = map.get("phone").toString();
 
-        //get verification code
+        //Get verification code
         String code = map.get("code").toString();
 
         //Get the saved verification code from Session
@@ -97,7 +98,7 @@ public class UserController {
     @PostMapping("/loginout")
     public R<String> loginOut(HttpSession session){
 
-        // remove the session and it will be done
+        // Remove the session and it will be done
         session.removeAttribute("user");
 
         return R.success("login out successfully");
