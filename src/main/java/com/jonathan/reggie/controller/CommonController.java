@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 /**
- * file/image upload and download
+ * File/image upload and download
  */
 
 @RestController
@@ -32,18 +32,18 @@ public class CommonController {
 
 
     /**
-     * file upload
+     * File upload
      *
      * @param file
      * @return
      */
     @PostMapping("/upload")
     public R<String> upload(MultipartFile file) {
-        //file is a temporary file and needs to be transferred to the specified location,
+        //File is a temporary file and needs to be transferred to the specified location,
         // otherwise the temporary file will be deleted after this request is completed.
         log.info(file.toString());
 
-        //original file name
+        //Original file name
         String originalFilename = file.getOriginalFilename();
         String suffix = originalFilename.substring(originalFilename.lastIndexOf("."));
 
@@ -69,7 +69,7 @@ public class CommonController {
     }
 
     /**
-     * file download
+     * File download
      *
      * @param name
      * @param response
@@ -77,11 +77,12 @@ public class CommonController {
 
     @GetMapping("/download")
     public void download(String name, HttpServletResponse response) {
-        //输入流，通过输入流读取文件内容
+        //Input stream, read the file content through the input stream
         try {
             FileInputStream fileInputStream = new FileInputStream(new File(basePath + name));
 
-            //输出流，通过输出流将文件写回浏览器，在浏览器展示图片
+            //Output stream, write the file back to the browser through the output stream,
+            // and display the image in the browser
             ServletOutputStream outputStream = response.getOutputStream();
 
             response.setContentType("image/jpeg");
@@ -93,7 +94,7 @@ public class CommonController {
                 outputStream.flush();
             }
 
-            // 关闭资源
+            // Close resource
             outputStream.close();
             fileInputStream.close();
 
