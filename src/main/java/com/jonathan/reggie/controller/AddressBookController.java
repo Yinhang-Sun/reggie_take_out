@@ -26,7 +26,7 @@ public class AddressBookController {
     private AddressBookService addressBookService;
 
     /**
-     * Add
+     * Add address
      */
     @PostMapping
     public R<AddressBook> save(@RequestBody AddressBook addressBook) {
@@ -94,7 +94,7 @@ public class AddressBookController {
         addressBook.setUserId(BaseContext.getCurrentId());
         log.info("addressBook:{}", addressBook);
 
-        //conditional constructor
+        //Conditional constructor
         LambdaQueryWrapper<AddressBook> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(null != addressBook.getUserId(), AddressBook::getUserId, addressBook.getUserId());
         queryWrapper.orderByDesc(AddressBook::getUpdateTime);
