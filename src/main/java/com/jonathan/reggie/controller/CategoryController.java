@@ -24,7 +24,7 @@ public class CategoryController {
     private CategoryService categoryService;
 
     /**
-     * Adding new category
+     * Add new category
      *
      * @param category
      * @return
@@ -38,7 +38,7 @@ public class CategoryController {
     }
 
     /**
-     * pagination for category
+     * Pagination for category
      *
      * @param page
      * @param pageSize
@@ -62,7 +62,7 @@ public class CategoryController {
     }
 
     /**
-     * delete category according to id
+     Delete category according to id
      *
      * @param ids
      * @return
@@ -71,7 +71,7 @@ public class CategoryController {
     public R<String> delete(Long ids) {
         log.info("delete category, id is: {}", ids);
 
-        //categoryService.removeById(ids);
+        //CategoryService.removeById(ids);
         categoryService.remove(ids);
         return R.success("category deleted successfully!");
     }
@@ -97,7 +97,7 @@ public class CategoryController {
      */
     @GetMapping("/list")
     public R<List<Category>> list(Category category) {
-        //conditional constructor
+        //Conditional constructor
         LambdaQueryWrapper<Category> queryWrapper = new LambdaQueryWrapper<>();
 
         //Add conditions
