@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * dish management
+ * Dish management
  */
 
 @RestController
@@ -37,7 +37,7 @@ public class DishController {
     private CategoryService categoryService;
 
     /**
-     * add dish
+     * Add dish
      *
      * @param dishDto
      * @return
@@ -52,7 +52,7 @@ public class DishController {
     }
 
     /**
-     * dish info pagination
+     * Dish info pagination
      *
      * @param page
      * @param pageSize
@@ -66,17 +66,17 @@ public class DishController {
         Page<Dish> pageInfo = new Page<>(page, pageSize);
         Page<DishDto> dishDtoPage = new Page<>();
 
-        //conditional constructor
+        //Conditional constructor
         LambdaQueryWrapper<Dish> queryWrapper = new LambdaQueryWrapper<>();
-        //adding filter
+        //Adding filter
         queryWrapper.like(name != null, Dish::getName, name);
-        //adding sorting
+        //Adding sorting
         queryWrapper.orderByDesc(Dish::getUpdateTime);
 
-        //execute query
+        //Execute query
         dishService.page(pageInfo, queryWrapper);
 
-        //copy properties
+        //Copy properties
         BeanUtils.copyProperties(pageInfo, dishDtoPage, "records");
 
         List<Dish> records = pageInfo.getRecords();
@@ -103,7 +103,7 @@ public class DishController {
     }
 
     /**
-     * query dish and dish flavor info based on id
+     * Query dish and dish flavor info based on id
      * @param id
      * @return
      */
@@ -130,7 +130,7 @@ public class DishController {
     }
 
     /**
-     * query dish data based on conditions
+     * Query dish data based on conditions
      * @param dish
      * @return
      */
@@ -170,7 +170,7 @@ public class DishController {
             BeanUtils.copyProperties(item,dishDto);
 
             Long categoryId = item.getCategoryId();//category id
-            //query category object based on id
+            //Query category object based on id
             Category category = categoryService.getById(categoryId);
 
             if(category != null){
@@ -178,7 +178,7 @@ public class DishController {
                 dishDto.setCategoryName(categoryName);
             }
 
-            //current dish id
+            //Current dish id
             Long dishId = item.getId();
             LambdaQueryWrapper<DishFlavor> lambdaQueryWrapper = new LambdaQueryWrapper<>();
             lambdaQueryWrapper.eq(DishFlavor::getDishId,dishId);
