@@ -23,7 +23,7 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     /**
-     * employee login
+     * Employee login
      *
      * @param request
      * @param employee
@@ -63,7 +63,7 @@ public class EmployeeController {
     }
 
     /**
-     * employee logout
+     * Employee logout
      * @param request
      * @return
      */
@@ -103,7 +103,7 @@ public class EmployeeController {
 
 
     /**
-     * employee info pagination
+     * Employee info pagination
      * @param page
      * @param pageSize
      * @param name
