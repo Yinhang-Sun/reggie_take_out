@@ -44,7 +44,7 @@ public class OrderController {
 
 
     /**
-     * user order
+     * User order
      * @param orders
      * @return
      */
@@ -134,35 +134,35 @@ public class OrderController {
     @GetMapping("/userPage")
     public R<Page> pagePhone(int page,int pageSize){
 
-        // new a return type page
+        // New a return type page
         Page<Orders> pageInfo = new Page<>(page,pageSize);
         Page<OrdersDto> ordersDtoPage = new Page<>();
 
-        // user id
+        // User id
         Long currentId = BaseContext.getCurrentId();
 
-        // original conditions
+        // Original conditions
         LambdaQueryWrapper<Orders> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(Orders::getUserId,currentId);
         queryWrapper.orderByDesc(Orders::getOrderTime);
 
         orderService.page(pageInfo,queryWrapper);
 
-        // ordinary assignment
+        // Ordinary assignment
         BeanUtils.copyProperties(pageInfo,ordersDtoPage,"records");
 
-        // order assignment
+        // Order assignment
         List<Orders> records = pageInfo.getRecords();
 
         List<OrdersDto> ordersDtoList = records.stream().map((item) -> {
 
-            // new internal element
+            // New internal element
             OrdersDto ordersDto = new OrdersDto();
 
-            // ordinary assignment
+            // Ordinary assignment
             BeanUtils.copyProperties(item,ordersDto);
 
-            // dish details assignment
+            // Dish details assignment
             Long itemId = item.getId();
 
             LambdaQueryWrapper<OrderDetail> orderDetailLambdaQueryWrapper = new LambdaQueryWrapper<>();
@@ -192,25 +192,25 @@ public class OrderController {
      */
     @PostMapping("/again")
     public R<String> againSubmit(@RequestBody Map<String,String> map){
-        // get id
+        // Get id
         String ids = map.get("id");
 
         long id = Long.parseLong(ids);
 
-        // create checking condition
+        // Create checking condition
         LambdaQueryWrapper<OrderDetail> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(OrderDetail::getOrderId,id);
 
         //Get all order details corresponding to the order
         List<OrderDetail> orderDetailList = orderDetailService.list(queryWrapper);
 
-        //clean the original shopping cart based on the user ID
+        //Clean the original shopping cart based on the user ID
         shoppingCartService.clean();
 
-        //get user id
+        //Get user id
         Long userId = BaseContext.getCurrentId();
 
-        //  assignment
+        //  Assignment
         List<ShoppingCart> shoppingCartList = orderDetailList.stream().map((item) -> {
 
             // The following are all assignment operations
