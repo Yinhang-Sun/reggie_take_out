@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * setmeal management
+ * Setmeal management
  */
 
 @RestController
@@ -56,7 +56,7 @@ public class SetmealController {
     }
 
     /**
-     * combo/setmeal pagination
+     * Combo/setmeal pagination
      * @param page
      * @param pageSize
      * @param name
@@ -64,31 +64,31 @@ public class SetmealController {
      */
     @GetMapping("/page")
     public R<Page> page(int page, int pageSize, String name) {
-        //pagination constructor
+        //Pagination constructor
         Page<Setmeal> pageInfo = new Page<>(page, pageSize);
         Page<SetmealDto> dtoPage = new Page<>();
 
         LambdaQueryWrapper<Setmeal> queryWrapper = new LambdaQueryWrapper<>();
         // Add query condition
         queryWrapper.like(name != null, Setmeal::getName, name);
-        // add sorting condition
+        // Add sorting condition
         queryWrapper.orderByDesc(Setmeal::getUpdateTime);
 
         setmealService.page(pageInfo, queryWrapper);
 
-        //objects copy
+        //Objects copy
         BeanUtils.copyProperties(pageInfo, dtoPage, "records");
         List<Setmeal> records = pageInfo.getRecords();
 
         List<SetmealDto> list = records.stream().map((item) -> {
             SetmealDto setmealDto = new SetmealDto();
-            //object copy
+            //Object copy
             BeanUtils.copyProperties(item, setmealDto);
-            //category id
+            //Category id
             Long categoryId = item.getCategoryId();
-            //query category object by id
+            //Query category object by id
             Category category = categoryService.getById(categoryId);
-            //get category name
+            //Get category name
             if(category != null) {
                 String categoryName = category.getName();
                 setmealDto.setCategoryName(categoryName);
@@ -169,7 +169,7 @@ public class SetmealController {
 
         setmealDto.setSetmealDishes(list);
 
-        // return setmealDto
+        // Return setmealDto
         return R.success(setmealDto);
     }
 
@@ -213,7 +213,7 @@ public class SetmealController {
         LambdaQueryWrapper<SetmealDish> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(SetmealDish::getSetmealId, SetmealId);
 
-        // get data
+        // Get data
         List<SetmealDish> list = setmealDishService.list(queryWrapper);
 
         List<DishDto> dishDtos = list.stream().map((setmealDish) -> {
