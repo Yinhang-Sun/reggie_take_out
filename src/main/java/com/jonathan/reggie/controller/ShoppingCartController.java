@@ -22,7 +22,7 @@ public class ShoppingCartController {
     private ShoppingCartService shoppingCartService;
 
     /**
-     * add shopping cart
+     * Add shopping cart
      *
      * @param shoppingCart
      * @return
@@ -32,37 +32,37 @@ public class ShoppingCartController {
     public R<ShoppingCart> add(@RequestBody ShoppingCart shoppingCart) {
         log.info("Shopping cart: {}", shoppingCart);
 
-        //set user id
+        //Set user id
         Long currentId = BaseContext.getCurrentId();
         shoppingCart.setUserId(currentId);
 
-        //check if the dish / setmeal is in the cart or not
+        //Check if the dish / setmeal is in the cart or not
         Long dishId = shoppingCart.getDishId();
 
         LambdaQueryWrapper<ShoppingCart> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(ShoppingCart::getUserId, currentId);
 
         if (dishId != null) {
-            // adding dish to cart
+            // Adding dish to cart
             queryWrapper.eq(ShoppingCart::getDishId, dishId);
 
         } else {
-            // adding combo to cart
+            // Adding combo to cart
             queryWrapper.eq(ShoppingCart::getSetmealId, shoppingCart.getSetmealId());
 
         }
 
-        //check if the dish / setmeal is in the cart or not
-        //select * from shopping_cart where user_id = ? and dish_id/setmeal_id = ?
+        //Check if the dish / setmeal is in the cart or not
+        //Select * from shopping_cart where user_id = ? and dish_id/setmeal_id = ?
         ShoppingCart cartServiceOne = shoppingCartService.getOne(queryWrapper);
 
         if (cartServiceOne != null) {
-            //if exists, add the number by 1
+            //If exists, add the number by 1
             Integer number = cartServiceOne.getNumber();
             cartServiceOne.setNumber(number + 1);
             shoppingCartService.updateById(cartServiceOne);
         } else {
-            //if not, add it to the cart and the default number is 1
+            //If not, add it to the cart and the default number is 1
             shoppingCart.setNumber(1);
             shoppingCart.setCreateTime(LocalDateTime.now());
             shoppingCartService.save(shoppingCart);
@@ -72,7 +72,7 @@ public class ShoppingCartController {
     }
 
     /**
-     * check the shopping cart
+     * Check the shopping cart
      * @return
      */
     @GetMapping("/list")
@@ -89,12 +89,12 @@ public class ShoppingCartController {
     }
 
     /**
-     * clean shopping cart
+     * Clean shopping cart
      * @return
      */
     @DeleteMapping("/clean")
     public R<String> clean() {
-        //delete from shopping_cart where user_id = ?
+        //Delete from shopping_cart where user_id = ?
 
         LambdaQueryWrapper<ShoppingCart> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(ShoppingCart::getUserId, BaseContext.getCurrentId());
