@@ -29,7 +29,7 @@ public class Category implements Serializable {
     private String name;
 
 
-    //sort
+    //Sort
     private Integer sort;
 
 
@@ -48,7 +48,7 @@ public class Category implements Serializable {
     private Long createUser;
 
 
-    //update user
+    //Update user
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Long updateUser;
 
