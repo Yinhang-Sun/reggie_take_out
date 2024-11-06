@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
-dish flavor
+Dish flavor
  */
 @Data
 public class DishFlavor implements Serializable {
@@ -19,15 +19,15 @@ public class DishFlavor implements Serializable {
     private Long id;
 
 
-    //dish id
+    //Dish id
     private Long dishId;
 
 
-    //flavor name
+    //Flavor name
     private String name;
 
 
-    //flavor value list
+    //Flavor value list
     private String value;
 
 
@@ -47,7 +47,7 @@ public class DishFlavor implements Serializable {
     private Long updateUser;
 
 
-    //delete or not
+    //Delete or not
     private Integer isDeleted;
 
 }
