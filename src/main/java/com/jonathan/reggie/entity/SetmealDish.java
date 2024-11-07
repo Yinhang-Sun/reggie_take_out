@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
- * setmeal and dish relationship
+ * Setmeal and dish relationship
  */
 @Data
 public class SetmealDish implements Serializable {
@@ -18,25 +18,25 @@ public class SetmealDish implements Serializable {
     private Long id;
 
 
-    //setmeal id
+    //Setmeal id
     private Long setmealId;
 
 
-    //dish id
+    //Dish id
     private Long dishId;
 
 
-    //dish name
+    //Dish name
     private String name;
 
-    //dish price
+    //Dish price
     private BigDecimal price;
 
-    //copies
+    //Copies
     private Integer copies;
 
 
-    //sort
+    //Sort
     private Integer sort;
 
 
@@ -56,6 +56,6 @@ public class SetmealDish implements Serializable {
     private Long updateUser;
 
 
-    //deleted or not
+    //Deleted or not
     private Integer isDeleted;
 }

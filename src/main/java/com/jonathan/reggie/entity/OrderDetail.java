@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
- * order details
+ * Order details
  */
 @Data
 public class OrderDetail implements Serializable {
