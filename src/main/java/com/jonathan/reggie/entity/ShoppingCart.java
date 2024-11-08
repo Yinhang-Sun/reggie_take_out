@@ -15,28 +15,28 @@ public class ShoppingCart implements Serializable {
 
     private Long id;
 
-    //name
+    //Name
     private String name;
 
-    //user id
+    //User id
     private Long userId;
 
-    //dish id
+    //Dish id
     private Long dishId;
 
-    //setmeal id
+    //Setmeal id
     private Long setmealId;
 
-    //dish flavor
+    //Dish flavor
     private String dishFlavor;
 
-    //number
+    //Number
     private Integer number;
 
-    //amount
+    //Amount
     private BigDecimal amount;
 
-    //image
+    //Image
     private String image;
 
     private LocalDateTime createTime;
