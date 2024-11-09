@@ -23,41 +23,41 @@ public class DishServiceImpl extends ServiceImpl<DishMapper, Dish> implements Di
     @Autowired
     private DishFlavorService dishFlavorService;
     /**
-     * add dish, and save the dish flavor
+     * Add dish, and save the dish flavor
      * @param dishDto
      */
     @Transactional
     public void saveWithFlavor(DishDto dishDto) {
-        //save the dish basic info into dish table
+        //Save the dish basic info into dish table
         this.save(dishDto);
 
-        Long dishId = dishDto.getId(); //dish id
+        Long dishId = dishDto.getId(); // Dish id
 
-        // dish flavors
+        // Dish flavors
         List<DishFlavor> flavors = dishDto.getFlavors();
         flavors = flavors.stream().map((item) -> {
             item.setDishId(dishId);
             return item;
         }).collect(Collectors.toList());
 
-        //save dish flavor into dish_flavor table
+        // Save dish flavor into dish_flavor table
         dishFlavorService.saveBatch(flavors);
 
     }
 
     /**
-     * query dish and flavor based on id
+     * Query dish and flavor based on id
      * @param id
      * @return
      */
     public DishDto getByIdWithFlavor(Long id) {
-        //query dish basic info from dish
+        // Query dish basic info from dish
         Dish dish = this.getById(id);
 
         DishDto dishDto = new DishDto();
         BeanUtils.copyProperties(dish, dishDto);
 
-        //query dish flavor info from dish_flavor
+        // Query dish flavor info from dish_flavor
         LambdaQueryWrapper<DishFlavor> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(DishFlavor::getDishId, dish.getId());
         List<DishFlavor> flavors = dishFlavorService.list(queryWrapper);
@@ -69,16 +69,16 @@ public class DishServiceImpl extends ServiceImpl<DishMapper, Dish> implements Di
     @Override
     @Transactional
     public void updateWithFlavor(DishDto dishDto) {
-        //update dish basic info
+        // Update dish basic info
         this.updateById(dishDto);
 
-        //clear current dish flavor -- delete from dish_flavor
+        // Clear current dish flavor -- delete from dish_flavor
         LambdaQueryWrapper<DishFlavor> queryWrapper = new LambdaQueryWrapper();
         queryWrapper.eq(DishFlavor::getDishId, dishDto.getId());
 
         dishFlavorService.remove(queryWrapper);
 
-        //add submitted dish flavor -- insert into dish_flavor
+        // Add submitted dish flavor -- insert into dish_flavor
         List<DishFlavor> flavors = dishDto.getFlavors();
 
         flavors = flavors.stream().map((item) -> {
