@@ -9,7 +9,7 @@ import java.util.List;
 public interface SetmealService extends IService<Setmeal> {
 
     /**
-     * save setmeal with dishes-associated
+     * Save setmeal with dishes-associated
      * @param setmealDto
      */
     public void saveWithDish(SetmealDto setmealDto);
