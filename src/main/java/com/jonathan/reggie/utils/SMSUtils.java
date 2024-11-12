@@ -13,7 +13,7 @@ import com.aliyuncs.profile.DefaultProfile;
 public class SMSUtils {
 
 	/**
-	 * sending a text message
+	 * Sending a text message
 	 * @param signName signature
 	 * @param templateCode template
 	 * @param phoneNumbers phone number
